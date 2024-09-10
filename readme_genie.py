@@ -5,6 +5,7 @@ from groq import Groq
 
 VERSION = "0.1"
 TOOL_NAME = "ReadmeGenie"
+FOOTER_STRING = "\n\nThis readme file was auto-generated using Readme Genie"
 
 def get_env():
     return os.path.isfile('.env')
@@ -44,7 +45,13 @@ def generate_readme(file_paths, api_key, base_url, output_filename):
             ],
             model="llama3-8b-8192",
         )
-        readme_content = response.choices[0].message.content.strip()
+        readme_content = response.choices[0].message.content.strip() + FOOTER_STRING
+        
+        # Checks if the content starts with the title
+        if readme_content[0] != '*':
+            # print("\n".join(readme_content.split('\n')[1:]))
+            readme_content = "\n".join(readme_content.split('\n')[1:])
+
 
         # Save to the output file
         with open(output_filename, 'w') as output_file:

@@ -1,70 +1,75 @@
-Here is a comprehensive README.md file for the provided code:
 
-**ReadmeGenie: A Tool for Generating README.md Files using Groq**
-==============================================================
+**ReadmeGenie**
+================
 
-ReadmeGenie is a command-line tool that uses Groq's language model to generate a detailed README.md file from a set of input files. The tool provides flexibility in terms of input file selection, API key setup, and output filename.
+ReadmeGenie is a Python script that uses the Groq API to generate a detailed README.md file for a given set of input files.
 
-**Getting Started**
----------------
+**Features**
+-----------
 
-Before using ReadmeGenie, please ensure you have the following:
+* Supports multiple input files
+* Allows for customization of API key, base URL, and output filename
+* Saves API key and base URL to a `.env` file for future use (optional)
+* Automatically generates a detailed README.md file using Groq's AI-powered text generation capabilities
 
-1. Install the required Python packages: `groq` and `envdot`
-2. Create a Groq API key and base URL (see [Groq API Documentation](https://groq.com/docs/api) for more information)
-
-**Usage**
------
-
-To use ReadmeGenie, run the following command:
-
-```
-python readmegenie.py [options] <file1> <file2> ...
-```
-
-Replace `<file1> <file2> ...` with the paths to the input files you want to use for generating the README.md file.
-
-**Options**
--------
-
-The following options are available:
-
-* `-a` or `--api-key`: Specify your Groq API key. If not provided, the tool will look for it in a `.env` file.
-* `-u` or `--base-url`: Specify the base URL for the Groq API. If not provided, the tool will default to `https://api.groq.com` or use the value from a `.env` file.
-* `-o` or `--output`: Specify the output filename for the generated README.md file. Default is `README.md`.
-* `-v` or `--version`: Show the tool version and exit.
-
-**Example Usage**
--------------
-
- Generate a README.md file from a set of input files using the command:
-
-```
-python readmegenie.py -a MY_GROQ_API_KEY -u https://api.groq.com input_file1.txt input_file2.txt
-```
-
-In this example, ReadmeGenie will generate a README.md file based on the contents of `input_file1.txt` and `input_file2.txt` using the provided API key and base URL. The output filename will be `README.md`.
-
-**Notes**
-----
-
-* The tool will create a `.env` file in the current working directory if it does not exist and the API key is provided.
-* If you want to use a different API key or base URL for future runs, you can edit the `.env` file or update the API key and base URL using the `-a` and `-u` options.
-* If you encounter any issues during the execution, the tool will print an error message with details.
-
-**License**
--------
-
-This tool is licensed under the MIT License. See [LICENSE.txt](LICENSE.txt) for more information.
-
-**Contributing**
+**Installation**
 --------------
 
-Contributions are welcome! If you would like to contribute to the development of ReadmeGenie, please submit a pull request or create an issue with your suggestions or bug reports.
-
-**Authors**
+To use ReadmeGenie, you will need to install the required libraries. You can do this by running the following command:
+```bash
+pip install python-dotenv groq
+```
+**Usage**
 ---------
 
-This tool was created by [Your Name]. You can contact me at [Your Email Address] for any questions or feedback.
+To generate a README.md file using ReadmeGenie, simply run the script from the command line:
+```bash
+python readme_genie.py <file1> <file2> ...
+```
+Replace `<file1>`, `<file2>`, etc. with the names of the input files you want to generate a README.md file for.
 
-I hope you find ReadmeGenie helpful in generating high-quality README.md files for your projects!
+**Options**
+---------
+
+You can customize the behavior of ReadmeGenie by using the following command-line options:
+
+* `-a`, `--api-key`: Specify your Groq API key
+* `-u`, `--base-url`: Specify the base URL for the Groq API
+* `-o`, `--output`: Specify the output filename for the generated README.md file (default is `README.md`)
+* `-v`, `--version`: Display the version number of ReadmeGenie
+
+**Example**
+----------
+
+Here is an example of how to use ReadmeGenie to generate a README.md file for two input files:
+```bash
+python readme_genie.py file1.md file2.md
+```
+This will generate a README.md file using the content of `file1.md` and `file2.md` as input.
+
+**Troubleshooting**
+-----------------
+
+If you encounter any issues while using ReadmeGenie, you can refer to the following troubleshooting tips:
+
+* Make sure you have installed the required libraries (python-dotenv and groq)
+* Check that your API key is valid and correct
+* Verify that the input files exist and can be read
+* If you encounter any errors, try running the script with the `-v` option to display more detailed output
+
+**License**
+---------
+
+ReadmeGenie is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+**Author**
+---------
+
+ReadmeGenie was written by [Your Name]. Feel free to reach out to me if you have any questions or need further assistance.
+
+**Version**
+---------
+
+ReadmeGenie version: 0.1
+
+This readme file was auto-generated using Readme Genie

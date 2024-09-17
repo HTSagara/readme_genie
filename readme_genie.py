@@ -57,6 +57,7 @@ def generate_readme(file_paths, api_key, base_url, output_filename):
         with open(output_filename, 'w') as output_file:
             output_file.write(readme_content)
         print(f"README.md file generated and saved as {output_filename}")
+        print(f"This is your file's content:\n {readme_content}")
 
         # If there is no .env file, the user can choose to save it for future use
         if not get_env() and api_key is not None:

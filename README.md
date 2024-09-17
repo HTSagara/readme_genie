@@ -2,44 +2,49 @@
 **ReadmeGenie**
 ================
 
-**Version:** `0.1`
+**Overview**
 
-**Description:**
-ReadmeGenie is a tool that uses the Groq API to generate a detailed README.md file for a given set of files. It allows you to provide an API key, base URL, and output filename to customize the generation process.
+ReadmeGenie is a command-line tool that generates detailed README.md files for your projects using the Groq API. It allows you to provide input files that contain a brief description of your project, and then uses the Groq API to generate a comprehensive README.md file.
 
-**Usage:**
-To use ReadmeGenie, simply run the command with the following options:
+**Installation**
 
-* `--files` or `-f`: One or more input files to generate the README for. These files will be concatenated and used as the content for the README.
-* `--api-key` or `-a`: Your Groq API key. This can be provided as an argument or as an environment variable named `GROQ_API_KEY`.
-* `--base-url` or `-u`: The base URL for the Groq API. This can be provided as an argument or as an environment variable named `GROQ_BASE_URL`.
-* `--output` or `-o`: The output filename for the generated README. Default is `README.md`.
-* `--version` or `-v`: Display the version of ReadmeGenie.
+To install ReadmeGenie, you can simply download the script and run it from the command line. No additional dependencies are required, as the tool uses the Groq API and Python's built-in `argparse` module.
 
-Example usage:
+**Usage**
 
+To use ReadmeGenie, simply provide the input files you want to generate a README.md file for, along with any additional options you'd like to customize the output.
+
+**Options**
+
+* `--files` or `-f`: The input file(s) to generate the README for. Provide one or more filenames separated by spaces.
+* `--api-key` or `-a`: Your Groq API key. If not provided, the tool will check for a `.env` file containing the API key.
+* `--base-url` or `-u`: The base URL for the Groq API. If not provided, the tool will default to `https://api.groq.com`.
+* `--output` or `-o`: The output filename for the generated README. If not provided, the default filename is `README.md`.
+* `-v` or `--version`: Show the version number of ReadmeGenie.
+
+**Example**
+
+To generate a README.md file for a project with multiple files, use the following command:
 ```
-python readme_genie.py file1.md file2.md -a YOUR_API_KEY -u https://api.groq.com -o README-generated.md
+python readmegenie.py -f file1.txt file2.txt -a YOUR_GROQ_API_KEY -u YOUR_GROQ_BASE_URL -o my_readme.md
 ```
+Replace `file1.txt` and `file2.txt` with the input files you want to generate the README for, and `YOUR_GROQ_API_KEY` and `YOUR_GROQ_BASE_URL` with your Groq API key and base URL, respectively. The output filename will be `my_readme.md`.
 
-**How it works:**
-ReadmeGenie uses the Groq API to generate a detailed README.md file based on the provided files. It checks if the API key is provided as an argument or as an environment variable, and if not, it prompts the user to save it in a `.env` file for future use. The tool also allows the user to update the `.env` file if they provide a different API key.
+**How it Works**
 
-**Error handling:**
-ReadmeGenie can handle unexpected errors and display the error message to the user.
+When you run ReadmeGenie, it follows these steps:
 
-**Environment variables:**
-ReadmeGenie uses the following environment variables:
+1. It checks if the input files exist and are readable.
+2. It loads the Groq API key from a `.env` file or an environment variable, and sets up the Groq API client.
+3. It concatenates the content of the input files and makes a request to the Groq API to generate a README.md file.
+4. It saves the generated README.md file to the output filename specified by the user.
 
-* `GROQ_API_KEY`: Your Groq API key (optional)
-* `GROQ_BASE_URL`: The base URL for the Groq API (optional)
+**License**
 
-**Note:** You need to have the Groq API key and base URL to use this tool. The `.env` file is used to store these values for future use.
+ReadmeGenie is released under the MIT License. See the LICENSE file for more information.
 
-**License:**
-ReadmeGenie is released under the [MIT License](https://opensource.org/licenses/MIT).
+**Contributing**
 
-**Disclaimer:**
-This tool is developed and maintained by [Your Name]. Use at your own risk.
+If you'd like to contribute to ReadmeGenie, please fork the repository and submit a pull request with your changes.
 
 This readme file was auto-generated using Readme Genie

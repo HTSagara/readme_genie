@@ -1,11 +1,17 @@
 import os
 import argparse
+import json
 from dotenv import load_dotenv
 from groq import Groq
+import logging_config
+from colorama import Fore, Style
 
 VERSION = "0.1"
 TOOL_NAME = "ReadmeGenie"
 FOOTER_STRING = "\n\nThis readme file was auto-generated using Readme Genie"
+
+# Set up the logger from logging_config
+logger = logging_config.setup_logger()
 
 def get_env():
     return os.path.isfile('.env')
@@ -56,25 +62,27 @@ def generate_readme(file_paths, api_key, base_url, output_filename):
         # Save to the output file
         with open(output_filename, 'w') as output_file:
             output_file.write(readme_content)
-        print(f"README.md file generated and saved as {output_filename}")
-        print(f"This is your file's content:\n {readme_content}")
+        logger.info(f"README.md file generated and saved as {output_filename}")
+        logger.info(f"This is your file's content:\n {readme_content}")
 
         # If there is no .env file, the user can choose to save it for future use
         if not get_env() and api_key is not None:
-            print("Would you like to save your API key and base URL in a .env file for future use? [y/n]")
+            logger.info("Would you like to save your API key and base URL in a .env file for future use? [y/n]")
             answer = input()
             if answer.lower() == 'y':
                 create_env(api_key, base_url)
         # If the user provides an API_KEY different from the saved one
         elif get_env() and api_key != os.getenv("GROQ_API_KEY"):
             if api_key is not None:
-                print("You entered a different API key. Would you like to update your .env file? [y/n]")
+                logger.info("You entered a different API key. Would you like to update your .env file? [y/n]")
                 answer = input()
                 if answer.lower() == 'y':
                     create_env(api_key, base_url)
 
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        # Log other unexpected errors
+        logger.error(f"{Fore.RED}An unexpected error occurred: {e}{Style.RESET_ALL}")
+
 
 def main():
     parser = argparse.ArgumentParser(

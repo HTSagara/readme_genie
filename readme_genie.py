@@ -53,15 +53,34 @@ def generate_readme(file_paths, api_key, base_url, output_filename, token_usage)
 
         # Extract response content and write to output file
         readme_content = response.choices[0].message.content
+        
+        if readme_content[0] != '*':
+            readme_content = "\n".join(readme_content.split('\n')[1:])
+        
         with open(output_filename, 'w') as output_file:
             output_file.write(readme_content)
         logger.info(f"README.md file generated and saved as {output_filename}")
         logger.info(f"This is your file's content:\\n {readme_content}")
 
+        if not get_env() and api_key is not None:
+            logger.info("Would you like to save your API key and base URL in a .env file for future use? [y/n]")
+            answer = input()
+            if answer.lower() == 'y':
+                create_env(api_key, base_url)
+        # If the user provides an API_KEY different from the saved one
+        elif get_env() and api_key != os.getenv("GROQ_API_KEY"):
+            if api_key is not None:
+                logger.info("You entered a different API key. Would you like to update your .env file? [y/n]")
+                answer = input()
+                if answer.lower() == 'y':
+                    create_env(api_key, base_url)
+
         # Report token usage if the flag is set
+        # Correct usage access
         if token_usage:
             usage = response.usage  # Access the usage object using dot notation
             logger.info(f"Token Usage Information: Prompt tokens: {usage.prompt_tokens}, Completion tokens: {usage.completion_tokens}, Total tokens: {usage.total_tokens}")
+
 
 
     except Exception as e:

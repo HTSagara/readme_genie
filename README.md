@@ -14,13 +14,25 @@ To install ReadmeGenie, you can simply download the script and run it from the c
 
 To use ReadmeGenie, simply provide the input files you want to generate a README.md file for, along with any additional options you'd like to customize the output.
 
+**New Feature**
+
+When the -t or --token-usage flag is used, the tool will report the following information in the logs:
+
+Prompt Tokens: The number of tokens used in the prompt (i.e., your input).
+Completion Tokens: The number of tokens in the generated README.
+Total Tokens: The total number of tokens used in both the prompt and the completion.
+This information is useful for tracking your API usage and ensuring you're staying within token limits.
+
+
 **Options**
 
-* `--files` or `-f`: The input file(s) to generate the README for. Provide one or more filenames separated by spaces.
-* `--api-key` or `-a`: Your Groq API key. If not provided, the tool will check for a `.env` file containing the API key.
-* `--base-url` or `-u`: The base URL for the Groq API. If not provided, the tool will default to `https://api.groq.com`.
-* `--output` or `-o`: The output filename for the generated README. If not provided, the default filename is `README.md`.
-* `-v` or `--version`: Show the version number of ReadmeGenie.
+*    parser.add_argument("files", nargs='+', type=str, help="The input file(s) to generate the README for.")
+*    parser.add_argument("-a", "--api-key", type=str, help="Your Groq API key.")
+*    parser.add_argument("-u", "--base-url", type=str, help="The base URL for the Groq API.")
+*    parser.add_argument("-o", "--output", type=str, default="README.md", help="The output filename for the generated README.")
+*    parser.add_argument("-t", "--token-usage", action="store_true", help="Display token usage information for the request.")
+*    parser.add_argument("-v", "--version", action="version", version=f"{TOOL_NAME} {VERSION}")
+
 
 **Example**
 
@@ -38,6 +50,8 @@ When you run ReadmeGenie, it follows these steps:
 2. It loads the Groq API key from a `.env` file or an environment variable, and sets up the Groq API client.
 3. It concatenates the content of the input files and makes a request to the Groq API to generate a README.md file.
 4. It saves the generated README.md file to the output filename specified by the user.
+
+
 
 **License**
 

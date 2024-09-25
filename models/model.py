@@ -5,6 +5,7 @@ import logging_config
 import os
 from colorama import Fore, Style
 from models.groq_api import groqAPI
+from models.cohere_api import cohereAPI
 
 
 FOOTER_STRING = "\n\nThis readme file was auto-generated using Readme Genie"
@@ -46,13 +47,12 @@ def generate_readme(file_paths, api_key, base_url, output_filename, token_usage)
         chosenModel = selectModel(base_url)
         if chosenModel == 'cohere':
             base_url = os.getenv("COHERE_BASE_URL", "https://api.cohere.ai/v1")
-            response = "COHERE API --> Under development"
+            response = cohereAPI(api_key, base_url, file_content)
+            readme_content = response.generations[0].text.strip() + FOOTER_STRING
         else:
             base_url = os.getenv("GROQ_BASE_URL", "https://api.groq.com")
             response = groqAPI(api_key, base_url, file_content)
-
-        # Extract response content and write to output file
-        readme_content = response.choices[0].message.content.strip() + FOOTER_STRING
+            readme_content = response.choices[0].message.content.strip() + FOOTER_STRING
         
         if readme_content[0] != '*':
             readme_content = "\n".join(readme_content.split('\n')[1:])

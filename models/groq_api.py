@@ -3,7 +3,6 @@ from groq import Groq
 from dotenv import load_dotenv
 import logging_config
 import os
-from colorama import Fore, Style
 
 # Set up the logger from logging_config
 logger = logging_config.setup_logger()

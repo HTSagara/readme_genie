@@ -4,6 +4,8 @@ from groq import Groq
 import logging_config
 import os
 from colorama import Fore, Style
+from models.groq_api import groqAPI
+
 
 FOOTER_STRING = "\n\nThis readme file was auto-generated using Readme Genie"
 
@@ -18,6 +20,14 @@ def create_env(api_key, base_url):
         env_file.write(f"GROQ_API_KEY={api_key}\n")
         env_file.write(f"GROQ_BASE_URL={base_url}\n")
 
+def selectModel(base_url):
+    # If the user specifies the base url to use cohere
+    if base_url == 'https://api.cohere.ai/v1':
+        return 'cohere'
+    # Otherwise, it will use groq by default
+    else:
+        return 'groq'
+
 def generate_readme(file_paths, api_key, base_url, output_filename, token_usage):
     try:
         load_dotenv()
@@ -25,30 +35,21 @@ def generate_readme(file_paths, api_key, base_url, output_filename, token_usage)
         # Check if the api_key was provided either as an environment variable or as an argument
         if not api_key and not get_env():
             raise Exception("Please provide an API_KEY")
-
-        # Get the base_url from arguments, environment, or use the default
-        if not base_url:
-            base_url = os.getenv("GROQ_BASE_URL", "https://api.groq.com")
-
-        client = Groq(
-            api_key=api_key or os.getenv("GROQ_API_KEY"), 
-            base_url=base_url
-        )
-
+        
         # Concatenate content from multiple files
         file_content = ""
         for file_path in file_paths:
             with open(file_path, 'r') as file:
                 file_content += file.read() + "\\n\\n"
 
-        # Make a request to Groq with the model parameter
-        response = client.chat.completions.create(
-            messages=[
-                {"role": "user", "content": f"Generate a detailed README.md with introduction, how-to-use, and examples for the following file content:\n\n{file_content}"}
-            ],
-            model="llama3-8b-8192",
-        )
-        logger.info(f"Response from the API: {response}")
+        # Get the base_url from arguments, environment, or use the default
+        chosenModel = selectModel(base_url)
+        if chosenModel == 'cohere':
+            base_url = os.getenv("COHERE_BASE_URL", "https://api.cohere.ai/v1")
+            response = "COHERE API --> Under development"
+        else:
+            base_url = os.getenv("GROQ_BASE_URL", "https://api.groq.com")
+            response = groqAPI(api_key, base_url, file_content)
 
         # Extract response content and write to output file
         readme_content = response.choices[0].message.content.strip() + FOOTER_STRING

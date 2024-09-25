@@ -1,50 +1,79 @@
-**README for ReadmeGenie**
+
+**ReadmeGenie**
+================
 
 **Introduction**
-ReadmeGenie is a command-line tool that generates a detailed README.md file using Groq, a state-of-the-art AI model. This tool helps you create a high-quality, well-formatted README file for your project, complete with an introduction, how-to-use section, and examples. You can customize the process by providing your own API key, base URL, and output filename.
+---------------
 
-**How to Use ReadmeGenie**
+ReadmeGenie is a command-line tool that generates a `README.md` file for you using Groq. It's a simple and efficient way to create high-quality documentation for your projects.
 
-1. **Install ReadmeGenie**: clone this repository and install the required dependencies using `pip install -r requirements.txt`.
-2. **Provide the input files**: specify the input file(s) to generate the README for using the `-files` or `<files>` option. Multiple files can be provided, separated by spaces.
-3. **Provide the API key and base URL**: specify your Groq API key and base URL using the `-a` or `--api-key` and `-u` or `--base-url` options, respectively.
-4. **Specify the output filename**: specify the output filename for the generated README using the `-o` or `--output` option. The default output filename is `README.md`.
-5. **Enable token usage information**: if you want to see token usage information for the generated README, use the `-t` or `--token-usage` option.
+**How to Use**
+--------------
 
-**Examples**
+### Basic Usage
 
-1. **Basic usage**:
+To use ReadmeGenie, simply run the following command:
 ```bash
-$ python readme_genie.py file1.txt file2.txt
+python readme_genie.py [input files] [options]
 ```
-This will generate a `README.md` file using the default API key and base URL.
-
-2. **Specify API key and base URL**:
+Replace `[input files]` with the name(s) of the file(s) you want to generate the README for. For example:
 ```bash
-$ python readme_genie.py file1.txt file2.txt -a YOUR_API_KEY -u https://api.groq.com
+python readme_genie.py my_file1.txt my_file2.py
 ```
-This will generate a `README.md` file using the specified API key and base URL.
+### Options
 
-3. **Specify output filename and token usage info**:
-```bash
-$ python readme_genie.py file1.txt file2.txt -o custom_readme.md -t
+You can use the following options to customize the generation process:
+
+* `-a`, `--api-key`: Your Groq API key. Required for authentication.
+* `-u`, `--base-url`: The base URL for the Groq API. Required for authentication.
+* `-o`, `--output`: The output filename for the generated README. Default is `README.md`.
+* `-t`, `--token-usage`: Display token usage information for the request.
+* `-v`, `--version`: Display the version of ReadmeGenie.
+
+### Examples
+
+Here are a few examples of how you can use ReadmeGenie:
+
+**Example 1: Simple usage**
 ```
-This will generate a `custom_readme.md` file and display token usage information.
+python readme_genie.py my_file.txt
+```
+This will generate a `README.md` file for `my_file.txt` using the default options.
+
+**Example 2: Custom output filename**
+```
+python readme_genie.py my_file.txt -o my_readme.md
+```
+This will generate a `my_readme.md` file for `my_file.txt`.
+
+**Example 3: Display token usage**
+```
+python readme_genie.py my_file.txt -t
+```
+This will generate a `README.md` file for `my_file.txt` and display token usage information for the request.
+
+### Using ReadmeGenie with Multiple Files
+----------------------------------------
+
+You can pass multiple file names as arguments to ReadmeGenie. For example:
+```bash
+python readme_genie.py my_file1.txt my_file2.py my_file3.md
+```
+This will generate a `README.md` file for each of the input files.
+
+**Getting Started**
+-------------------
+
+To get started with ReadmeGenie, simply download the file and run it using Python. Make sure you have Groq installed and configured on your system.
 
 **License**
+----------
 
-ReadmeGenie is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+ReadmeGenie is licensed under the MIT License. See `LICENSE` for details.
 
-**Authors**
+**About the Author**
+---------------------
 
-* [Your Name]
-
-**Contributing**
-
-Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to ReadmeGenie.
-
-**Acknowledgments**
-
-Thank you for using ReadmeGenie!
+This tool was created by [Your Name].
 
 This readme file was auto-generated using Readme Genie

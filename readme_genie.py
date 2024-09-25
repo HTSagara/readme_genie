@@ -46,13 +46,15 @@ def generate_readme(file_paths, api_key, base_url, output_filename, token_usage)
 
         # Make a request to Groq with the model parameter
         response = client.chat.completions.create(
-            model="llama3-70b-8192",  # Add a valid model here
-            messages=[{"role": "system", "content": "Generate a README file."}, {"role": "user", "content": file_content}]
+            messages=[
+                {"role": "user", "content": f"Generate a detailed README.md with introduction, how-to-use, and examples for the following file content:\n\n{file_content}"}
+            ],
+            model="llama3-8b-8192",
         )
         logger.info(f"Response from the API: {response}")
 
         # Extract response content and write to output file
-        readme_content = response.choices[0].message.content
+        readme_content = response.choices[0].message.content.strip() + FOOTER_STRING
         
         if readme_content[0] != '*':
             readme_content = "\n".join(readme_content.split('\n')[1:])

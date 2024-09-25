@@ -10,11 +10,11 @@ logger = logging_config.setup_logger()
 def get_env():
     return os.path.isfile('.env')
 
-def cohereAPI(api_key, base_url, file_content):
+def cohereAPI(api_key, file_content):
     load_dotenv()
 
     client = cohere.Client(
-            api_key
+            api_key or os.getenv("COHERE_API_KEY")
         )
 
     response = client.generate(

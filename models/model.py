@@ -16,10 +16,14 @@ logger = logging_config.setup_logger()
 def get_env():
     return os.path.isfile('.env')
 
-def create_env(api_key, base_url):
-    with open('.env', 'w') as env_file:
-        env_file.write(f"GROQ_API_KEY={api_key}\n")
-        env_file.write(f"GROQ_BASE_URL={base_url}\n")
+def create_env(api_key, base_url, model):
+    with open('.env', 'a') as env_file:
+        if model == 'cohere':
+            env_file.write(f"COHERE_API_KEY={api_key}\n")
+            env_file.write(f"COHERE_BASE_URL={base_url}\n")
+        else:
+            env_file.write(f"GROQ_API_KEY={api_key}\n")
+            env_file.write(f"GROQ_BASE_URL={base_url}\n")
 
 def selectModel(base_url):
     # If the user specifies the base url to use cohere
@@ -47,7 +51,7 @@ def generate_readme(file_paths, api_key, base_url, output_filename, token_usage)
         chosenModel = selectModel(base_url)
         if chosenModel == 'cohere':
             base_url = os.getenv("COHERE_BASE_URL", "https://api.cohere.ai/v1")
-            response = cohereAPI(api_key, base_url, file_content)
+            response = cohereAPI(api_key, file_content)
             readme_content = response.generations[0].text.strip() + FOOTER_STRING
         else:
             base_url = os.getenv("GROQ_BASE_URL", "https://api.groq.com")
@@ -66,14 +70,22 @@ def generate_readme(file_paths, api_key, base_url, output_filename, token_usage)
             logger.info("Would you like to save your API key and base URL in a .env file for future use? [y/n]")
             answer = input()
             if answer.lower() == 'y':
-                create_env(api_key, base_url)
+                create_env(api_key, base_url, chosenModel)
         # If the user provides an API_KEY different from the saved one
-        elif get_env() and api_key != os.getenv("GROQ_API_KEY"):
-            if api_key is not None:
-                logger.info("You entered a different API key. Would you like to update your .env file? [y/n]")
-                answer = input()
-                if answer.lower() == 'y':
-                    create_env(api_key, base_url)
+        elif get_env():
+            if chosenModel == 'cohere' and api_key != os.getenv("COHERE_API_KEY"):
+                if api_key is not None:
+                    logger.info("Would you like to save this API Key? [y/n]")
+                    answer = input()
+                    if answer.lower() == 'y':
+                        create_env(api_key, base_url, chosenModel)
+
+            elif chosenModel == 'groq' and api_key != os.getenv("GROQ_API_KEY"):
+                if api_key is not None:
+                    logger.info("Would you like to save this API Key? [y/n]")
+                    answer = input()
+                    if answer.lower() == 'y':
+                        create_env(api_key, base_url, chosenModel)
 
         # Report token usage if the flag is set
         # Correct usage access

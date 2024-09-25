@@ -1,79 +1,72 @@
+================================
 
-**ReadmeGenie**
-================
+Introduction
+-----------
 
-**Introduction**
+ReadmeGenie is a Python script that generates a markdown README file using Groq and Cohere APIs. With ReadmeGenie, you can create a detailed README file with introduction, how-to-use, and examples for your software or project in just a few steps.
+
+Getting Started
 ---------------
 
-ReadmeGenie is a command-line tool that generates a `README.md` file for you using Groq. It's a simple and efficient way to create high-quality documentation for your projects.
+### Installation
 
-**How to Use**
---------------
+To install ReadmeGenie, simply clone this repository and run the script.
 
-### Basic Usage
-
-To use ReadmeGenie, simply run the following command:
 ```bash
-python readme_genie.py [input files] [options]
+git clone https://github.com/your-username/ReadmeGenie.git
+cd ReadmeGenie
+python readme_genie.py
 ```
-Replace `[input files]` with the name(s) of the file(s) you want to generate the README for. For example:
+
+### Usage
+
+To use ReadmeGenie, you will need to provide the input file(s) to generate the README for, as well as the optional API key and base URL for Groq or Cohere.
+
 ```bash
-python readme_genie.py my_file1.txt my_file2.py
+python readme_genie.py -a <api_key> -u <base_url> file1.md file2.md ...
 ```
+
 ### Options
 
-You can use the following options to customize the generation process:
+*   `-a`, `--api-key`: Your Groq or Cohere API key.
+*   `-u`, `--base-url`: The base URL for the Groq or Cohere API.
+*   `file1.md`, `file2.md`, ...: The input file(s) to generate the README for.
+*   `-o`, `--output`: The output filename for the generated README (default: README.md).
+*   `-t`, `--token-usage`: Display token usage information for the request.
+*   `-v`, `--version`: Display the version number of ReadmeGenie.
 
-* `-a`, `--api-key`: Your Groq API key. Required for authentication.
-* `-u`, `--base-url`: The base URL for the Groq API. Required for authentication.
-* `-o`, `--output`: The output filename for the generated README. Default is `README.md`.
-* `-t`, `--token-usage`: Display token usage information for the request.
-* `-v`, `--version`: Display the version of ReadmeGenie.
+Examples
+-------
 
-### Examples
+### Simple Usage
 
-Here are a few examples of how you can use ReadmeGenie:
+Generate a README file for a single input file:
 
-**Example 1: Simple usage**
-```
-python readme_genie.py my_file.txt
-```
-This will generate a `README.md` file for `my_file.txt` using the default options.
-
-**Example 2: Custom output filename**
-```
-python readme_genie.py my_file.txt -o my_readme.md
-```
-This will generate a `my_readme.md` file for `my_file.txt`.
-
-**Example 3: Display token usage**
-```
-python readme_genie.py my_file.txt -t
-```
-This will generate a `README.md` file for `my_file.txt` and display token usage information for the request.
-
-### Using ReadmeGenie with Multiple Files
-----------------------------------------
-
-You can pass multiple file names as arguments to ReadmeGenie. For example:
 ```bash
-python readme_genie.py my_file1.txt my_file2.py my_file3.md
+python readme_genie.py -a <api_key> -u <base_url> file.md
 ```
-This will generate a `README.md` file for each of the input files.
 
-**Getting Started**
--------------------
+### Advanced Usage
 
-To get started with ReadmeGenie, simply download the file and run it using Python. Make sure you have Groq installed and configured on your system.
+Generate a README file for multiple input files and display token usage information:
 
-**License**
-----------
+```bash
+python readme_genie.py -a <api_key> -u <base_url> file1.md file2.md -t
+```
+
+License
+------
 
 ReadmeGenie is licensed under the MIT License. See `LICENSE` for details.
 
-**About the Author**
----------------------
+Contributing
+------------
 
-This tool was created by [Your Name].
+If you'd like to contribute to ReadmeGenie, please see `CONTRIBUTING.md` for guidelines.
+
+Author
+------
+
+ReadmeGenie was created by [Your Name](https://github.com/your-username).
 
 This readme file was auto-generated using Readme Genie

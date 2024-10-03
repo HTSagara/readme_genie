@@ -1,65 +1,66 @@
-**README Genie: A Tool for Generating README.md Files**
+**README.md Generation Tool - ReadmeGenie**
+================================================
 
-**Introduction**
-
-Readme Genie is a command-line tool designed to generate README.md files using AI models such as Groq and Cohere. With Readme Genie, you can easily create detailed README files with introductions, how-to-uses, and examples for any project or file content.
+ReadmeGenie is a command-line tool that helps you generate README.md files for your projects. It uses natural language processing (NLP) models from Groq and Cohere to create readable and informative README files. This tool is especially useful for projects with complex codebases or documentation.
 
 **How to Use**
+-------------
 
-To use Readme Genie, follow these steps:
+To use ReadmeGenie, you need to have the following installed:
 
-1. Install the tool by cloning the repository or downloading the executable file.
-2. Run the tool using the following command:
+* Python 3.8 or later
+* Groq API keys (free and paid options available)
+* Cohere API keys (free and paid options available)
 
-```
-python readme_genie.py
-```
+Here's a step-by-step guide to generate a README.md file:
 
-3. Provide the required arguments:
+1. Save your project files in a directory and navigate to that directory in your terminal.
+2. Run the following command: `python readme_genie.py -a <api_key> -u <base_url> -o output_file.md <input_file1> <input_file2> ...`
 
-* `files`: One or more input files to generate the README for.
-* `api-key`: Your API key for the chosen AI model (Groq or Cohere).
-* `base-url`: The base URL for the chosen AI model (Groq or Cohere).
-* `output`: The output filename for the generated README (default: README.md).
-* `token-usage`: Show token usage information for the request (optional).
-* `version`: Show the version number of the tool (optional).
+Replace:
 
-Example:
+* `<api_key>` with your Groq or Cohere API key
+* `<base_url>` with the base URL for your Groq or Cohere API (e.g., `https://api.groq.com` or `https://api.cohere.ai/v1`)
+* `<output_file>` with the desired output filename (default is `README.md`)
+* `<input_file>` with the file(s) you want to generate the README for
 
-```
-python readme_genie.py -a YOUR_API_KEY -u https://api.groq.com file1.txt file2.txt -o my_readme.md -t
-```
+Example: `python readme_genie.py -a YOUR_API_KEY -u https://api.groq.com -o output_file.md input_file1.md input_file2.txt`
+
+**Options**
+---------
+
+* `-a` or `--api-key`: Your Groq or Cohere API key
+* `-u` or `--base-url`: The base URL for your Groq or Cohere API
+* `-o` or `--output`: The output filename for the generated README (default is `README.md`)
+* `--token-usage`: Display token usage information for the request
+* `-v` or `--version`: Display the version of ReadmeGenie
 
 **Examples**
+------------
 
-Here are some examples to illustrate how to use Readme Genie:
+Here are some examples of how you can use ReadmeGenie:
 
-* Generate a README for a single file:
-
+1. Generate a README.md file for multiple input files:
+```bash
+python readme_genie.py -a YOUR_API_KEY -u https://api.groq.com -o output_file.md input_file1.md input_file2.txt input_file3.md
 ```
-python readme_genie.py -a YOUR_API_KEY -u https://api.groq.com file.txt -o readme.md
+2. Generate a README.md file for a single input file with token usage information:
+```bash
+python readme_genie.py -a YOUR_API_KEY -u https://api.groq.com -o output_file.md -t input_file.md
 ```
+**Tips and Tricks**
+-------------------
 
-* Generate a README for multiple files:
+* Make sure to save your API keys and base URLs securely, as they can be used to generate reads from your projects.
+* ReadmeGenie uses the default model for generating README files. You can experiment with different models and settings to achieve better results.
+* You can also customize the README templates to fit your project's style and tone.
 
-```
-python readme_genie.py -a YOUR_API_KEY -u https://api.groq.com file1.txt file2.txt file3.txt -o my_readme.md
-```
+**Troubleshooting**
+-------------------
 
-* Monitor token usage information:
+* If you encounter any issues while running ReadmeGenie, check the logs for error messages and try searching for solutions online.
+* If you need help with setting up your API keys or base URLs, refer to the documentation for Groq and Cohere.
 
-```
-python readme_genie.py -a YOUR_API_KEY -u https://api.groq.com file.txt -o readme.md -t
-```
-
-**Log Messages**
-
-Readme Genie logs various messages during the execution process. The log messages include:
-
-* Error messages: These are displayed in red to indicate potential errors or issues.
-* Warning messages: These are displayed in yellow to indicate potential issues or anomalies.
-* Informational messages: These are displayed in green to provide helpful information or updates.
-
-By using Readme Genie, you can create high-quality README files with ease and speed. The tool is designed to be user-friendly and adaptable to different use cases.
+We hope you find ReadmeGenie useful for generating high-quality README files for your projects!
 
 This readme file was auto-generated using Readme Genie

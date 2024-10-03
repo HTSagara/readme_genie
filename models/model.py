@@ -112,6 +112,8 @@ def generate_readme(file_paths, api_key, base_url, output_filename, token_usage)
                 logger.info(f"Token Usage Information: Prompt tokens: {usage.prompt_tokens}, Completion tokens: {usage.completion_tokens}, Total tokens: {usage.total_tokens}")
             except AttributeError:
                 logger.warning(f"{Fore.YELLOW}Token usage information is not available for this response.{Style.RESET_ALL}")
+        logger.info(f"{Fore.GREEN}File created successfully")
+        sys.exit(0)
 
     except Exception as e:
         # Catch-all for other unexpected errors

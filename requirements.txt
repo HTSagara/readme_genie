@@ -2,3 +2,4 @@ cohere==5.11.0
 colorama==0.4.6
 groq==0.11.0
 python-dotenv==1.0.1
+setuptools

@@ -102,6 +102,23 @@ Now, you can run the script with the required arguments:
 python readme_genie.py path/to/file1.py path/to/file2.py -a your_api_key -u https://api.groq.com -o README.md -t
 ```
 
+### Step 4-B: Running the Script with `.toml config file`
+1. First, you need to make a `readme_genie-config.toml` file in your local home directory.
+For example:
+```bash
+api_key="YOUR_API_KEY"
+token_usage=true
+output="result.md"
+base_url="https://api.groq.com"
+```
+
+2. Since, docker image is an isolated environment, it cannot access files on your local machine.
+Mount the config file onto your docker image.
+Run the following command.
+```bash
+docker run --rm -v ~/.readme_genie-config.toml:/root/.readme_genie-config.toml readmegenie:latest python3 /app/readme_genie.py ./examples/javascript/server.js
+```
+
 ### Deactivating the Virtual Environment
 
 After running the script, you can deactivate the virtual environment by using:

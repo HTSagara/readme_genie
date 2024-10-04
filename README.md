@@ -113,7 +113,7 @@ base_url="https://api.groq.com"
 ```
 
 2. Since, docker image is an isolated environment, it cannot access files on your local machine.
-Mount the config file onto your local machine.
+Mount the config file onto your docker image.
 Run the following command.
 ```bash
 docker run --rm -v ~/.readme_genie-config.toml:/root/.readme_genie-config.toml readmegenie:latest python3 /app/readme_genie.py ./examples/javascript/server.js

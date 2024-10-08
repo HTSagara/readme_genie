@@ -7,9 +7,6 @@ import os
 # Set up the logger from logging_config
 logger = logging_config.setup_logger()
 
-def get_env():
-    return os.path.isfile('.env')
-
 def cohereAPI(api_key, file_content):
     load_dotenv()
 

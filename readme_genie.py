@@ -38,10 +38,8 @@ def main():
     try:
          # Load config file
         config = load_config()
-        print(config)
       
         args = parse_arguments(config)
-        print(args)
 
         file_content = read_file_content(args.files)
         response = handle_api_request(args.api_key, args.base_url, file_content)

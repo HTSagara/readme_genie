@@ -1,6 +1,7 @@
 # main_example.py
 
-from classes import Greeting, Farewell
+from classes import Farewell, Greeting
+
 
 def main():
     name = input("Enter your name: ")
@@ -10,6 +11,7 @@ def main():
 
     print(greeting.say_hello())
     print(farewell.say_goodbye())
+
 
 if __name__ == "__main__":
     main()

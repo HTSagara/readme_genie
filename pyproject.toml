@@ -1,0 +1,20 @@
+# pyproject.toml
+# Set up black as formatter
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+# Set up ruff as linter only
+[tool.ruff]
+# Exclude directories that don’t need linting (e.g., virtual environments)
+exclude = [
+    "venv/",
+    "__pycache__/"
+]
+fix = true
+
+
+# Enable specific linting rules
+select = ["F", "E", "W", "B", "I", "S"]  # Example codes: F=flake8, E=errors, W=warnings, B=bugbear, I=import, S=safety
+# Exclude Black-compatible rules to avoid conflicts with Black's formatting.
+ignore = ["E501", "E203", "E231"]  # Exclude Black-incompatible style issues

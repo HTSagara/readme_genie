@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 
 reference.py
+
+.ruff_cache

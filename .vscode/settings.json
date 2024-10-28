@@ -1,0 +1,19 @@
+{
+  // Enable Black as the default formatter
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+
+  // Set up Ruff as the linter
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true,
+
+  // Ensure only Ruff is used as the linter
+  "python.linting.flake8Enabled": false,
+  "python.linting.pylintEnabled": false,
+
+  // Format and lint on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  }
+}

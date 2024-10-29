@@ -1,0 +1,14 @@
+# pyproject.toml
+# Set up ruff as linter only
+[tool.ruff]
+# Enable specific linting rules
+select = ["F", "E", "W", "B", "I", "S"]  # Example codes: F=flake8, E=errors, W=warnings, B=bugbear, I=import, S=safety
+
+# Exclude Black-compatible rules to avoid conflicts with Black's formatting.
+ignore = ["E203", "E231", "E501"]  # Exclude Black-incompatible style issues
+fix = true  # Ensure Ruff does not apply any formatting
+
+# Set up black as formatter
+[tool.black]
+line-length = 88
+target-version = ["py312"]

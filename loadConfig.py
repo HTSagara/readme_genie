@@ -1,5 +1,7 @@
 import os
+
 import toml
+
 
 def load_config():
     # Load config file from the project's root directory

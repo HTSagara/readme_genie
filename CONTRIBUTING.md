@@ -93,6 +93,20 @@ python readme_genie.py path/to/file1.py path/to/file2.py -a your_api_key -u http
 
 We use **Ruff** for linting and **Black** for code formatting. These tools help ensure code consistency and readability across the project. They are configured in `pyproject.toml` for easy setup.
 
+### Pre-Commit Hooks for Automatic Linting and Formatting
+
+For a consistent development experience, pre-commit hooks are used to automatically check code quality before each commit. Install pre-commit hooks by running:
+
+```bash
+pre-commit install
+```
+
+This will enforce Ruff and Black checks on your code upon every `git commit`. To run these checks manually, use:
+
+```bash
+pre-commit run --all-files
+```
+
 ### Using Ruff for Linting
 
 Ruff is configured to handle linting tasks without making any code changes. To run Ruff as the linter:

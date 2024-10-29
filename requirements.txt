@@ -4,5 +4,5 @@ groq==0.11.0
 python-dotenv==1.0.1
 toml==0.10.2
 setuptools
-ruff
-black
+black==23.3.0
+ruff==0.0.261

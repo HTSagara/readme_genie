@@ -2,9 +2,27 @@
 
 # Contributing to ReadmeGenie
 
-First off, thanks for taking the time to contribute!## Getting Started
+Thank you for taking the time to contribute to **ReadmeGenie**! Your help is greatly appreciated. This guide will assist you in setting up the project for development, using Docker or a local Python environment, and ensuring that code formatting and linting are consistent.
 
-This guide will help you get started with **Readme Genie** using either Docker or a local Python environment.
+## Table of Contents
+
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+- [Running with Docker](#running-with-docker)
+  - [Build the Docker Image](#build-the-docker-image)
+  - [Install Required Packages](#install-required-packages)
+  - [Run the Script](#run-the-script)
+- [Running Locally Without Docker](#running-locally-without-docker)
+  - [Set Up a Virtual Environment](#set-up-a-virtual-environment)
+  - [Install Required Packages](#install-required-packages)
+  - [Run the Script](#run-the-script)
+- [Code Formatting and Linting](#code-formatting-and-linting)
+  - [Using Ruff for Linting](#using-ruff-for-linting)
+  - [Using Black for Code Formatting](#using-black-for-code-formatting)
+  - [Running Formatting and Linting in VS Code](#running-formatting-and-linting-in-vs-code)
+- [Environment Variables](#environment-variables)
+
+## Getting Started
 
 ### Prerequisites
 
@@ -14,15 +32,15 @@ This guide will help you get started with **Readme Genie** using either Docker o
 
 ## Running with Docker
 
-### Step 1: Build the Docker Image
+### Build the Docker Image
 
-Before running the script, you need to build the Docker image. Run the following command in the project's root directory (where the `Dockerfile` is located):
+In the project’s root directory, where the `Dockerfile` is located, build the Docker image:
 
 ```bash
 docker build -t readmegenie:latest .
 ```
 
-### Step 2: Install Required Packages
+### Install Required Packages
 
 Ensure that all required Python packages are installed inside the Docker container by executing:
 
@@ -30,7 +48,7 @@ Ensure that all required Python packages are installed inside the Docker contain
 docker run --rm -v "$(pwd)":/app readmegenie:latest pip install -r requirements.txt
 ```
 
-### Step 3: Run the Script
+### Run the Script
 
 To generate a README file, use the following command:
 
@@ -38,54 +56,23 @@ To generate a README file, use the following command:
 docker run --rm -v "$(pwd)":/app readmegenie:latest python3 readme_genie.py [OPTIONS] <file1> <file2> ...
 ```
 
-Alternatively, use the provided `generate-readme.sh` script:
+You can also use the provided `generate-readme.sh` script:
 
 ```bash
 ./generate-readme.sh [OPTIONS] <file1> <file2> ...
 ```
 
-### Example Commands
-
-Here is an example command to generate a `README.md` file using Docker:
-
-```bash
-docker run --rm -v "$(pwd)":/app readmegenie:latest python3 readme_genie.py path/to/file1.py path/to/file2.py -a your_api_key -u https://api.groq.com -o README.md -t
-```
-
-### Arguments
-
-- **`file_paths`**: A list of file paths from which the content will be used to generate the README.
-- **`-a`, `--api-key`**: Your Groq or Cohere API key.
-- **`-u`, `--base-url`**: The base URL for the Groq or Cohere API.
-- **`-o`, `--output`**: The name of the output file (default is `README.md`).
-- **`-t`, `--token-usage`**: Flag to include token usage information in the output.
-
 ## Running Locally Without Docker
 
-If you prefer to run the script directly on your local machine, follow these steps:
+### Set Up a Virtual Environment
 
-### Step 1: Create a Virtual Environment
-
-First, create a Python virtual environment to isolate your project's dependencies:
+Create a Python virtual environment to isolate your project’s dependencies:
 
 ```bash
 python3 -m venv venv
 ```
 
-### Step 2: Activate the Virtual Environment
-
-Activate the virtual environment using the command specific to your operating system:
-
-- On **Windows**:
-  ```bash
-  venv\Scripts\activate
-  ```
-- On **macOS/Linux**:
-  ```bash
-  source venv/bin/activate
-  ```
-
-### Step 3: Install Required Packages
+### Install Required Packages
 
 With the virtual environment activated, install the required packages:
 
@@ -94,41 +81,54 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Step 4: Run the Script
+### Run the Script
 
-Now, you can run the script with the required arguments:
+Run the script with the required arguments:
 
 ```bash
 python readme_genie.py path/to/file1.py path/to/file2.py -a your_api_key -u https://api.groq.com -o README.md -t
 ```
 
-### Step 4-B: Running the Script with `.toml config file`
+## Code Formatting and Linting
 
-1. First, you need to make a `readme_genie-config.toml` file in your local home directory.
-   For example:
+We use **Ruff** for linting and **Black** for code formatting. These tools help ensure code consistency and readability across the project. They are configured in `pyproject.toml` for easy setup.
 
-```bash
-api_key="YOUR_API_KEY"
-token_usage=true
-output="result.md"
-base_url="https://api.groq.com"
-```
+### Using Ruff for Linting
 
-2. Since, docker image is an isolated environment, it cannot access files on your local machine.
-   Mount the config file onto your docker image.
-   Run the following command.
+Ruff is configured to handle linting tasks without making any code changes. To run Ruff as the linter:
 
 ```bash
-docker run --rm -v ~/.readme_genie-config.toml:/root/.readme_genie-config.toml readmegenie:latest python3 /app/readme_genie.py ./examples/javascript/server.js
+ruff check . --fix
 ```
 
-### Deactivating the Virtual Environment
+Ruff configurations are set to avoid conflicts with Black, and you can see detailed settings in `pyproject.toml`.
 
-After running the script, you can deactivate the virtual environment by using:
+### Using Black for Code Formatting
+
+To format the code with Black, run:
 
 ```bash
-deactivate
+black .
 ```
+
+This will apply the Black formatting conventions to all Python files in the project.
+
+### Running Formatting and Linting in VS Code
+
+If you’re using VS Code, you can set up the following configuration in `.vscode/settings.json` to run Ruff and Black automatically on file save:
+
+```json
+{
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.ruff": true
+  }
+}
+```
+
+This setup ensures that Black formats the code, while Ruff handles linting, every time you save a file.
 
 ## Environment Variables
 
@@ -138,3 +138,5 @@ To use the API keys and base URLs without specifying them in every command, set 
 - `COHERE_API_KEY`: Your Cohere API key.
 - `GROQ_BASE_URL`: The base URL for the Groq API.
 - `COHERE_BASE_URL`: The base URL for the Cohere API.
+
+Thank you for contributing to **Readme Genie**! Your work and efforts are appreciated.

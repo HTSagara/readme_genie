@@ -18,3 +18,12 @@ fix = true
 select = ["F", "E", "W", "B", "I", "S"]  # Example codes: F=flake8, E=errors, W=warnings, B=bugbear, I=import, S=safety
 # Exclude Black-compatible rules to avoid conflicts with Black's formatting.
 ignore = ["E501", "E203", "E231"]  # Exclude Black-incompatible style issues
+
+[tool.coverage.run]
+source = ["."]
+branch = true
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80

@@ -8,3 +8,9 @@ repos:
     rev: v0.7.1
     hooks:
       - id: ruff
+  - repo: local
+    hooks:
+      - id: check-coverage
+        name: Check Coverage
+        entry: bash -c "coverage run --source=. -m unittest discover -s tests && coverage report -m --fail-under=60"
+        language: system

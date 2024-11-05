@@ -10,7 +10,7 @@ from readme_genie import parse_arguments
 
 class TestArgumentParsing(unittest.TestCase):
     def test_argument_parsing_with_defaults(self):
-        # Add a mock 'files' argument to satisfy argparse
+        """Test the argument parsing"""
         test_args = ["file1.py", "file2.py"]
 
         config = {

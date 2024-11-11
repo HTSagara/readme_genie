@@ -36,3 +36,9 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
+      - name: Test functions
+        run: |
+          # Run tests with coverage
+          coverage run --source=. -m pytest
+          # Show coverage report
+          coverage report -m

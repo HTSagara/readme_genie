@@ -20,6 +20,8 @@ Thank you for taking the time to contribute to **ReadmeGenie**! Your help is gre
   - [Using Ruff for Linting](#using-ruff-for-linting)
   - [Using Black for Code Formatting](#using-black-for-code-formatting)
   - [Running Formatting and Linting in VS Code](#running-formatting-and-linting-in-vs-code)
+- [Running Tests and Checking Coverage](#running-tests-and-checking-coverage)
+  - [Testing Commands](#testing-commands)
 - [Environment Variables](#environment-variables)
 
 ## Getting Started
@@ -143,6 +145,26 @@ If you’re using VS Code, you can set up the following configuration in `.vscod
 ```
 
 This setup ensures that Black formats the code, while Ruff handles linting, every time you save a file.
+
+## Running Tests and Checking Coverage
+
+Unit tests ensure that **ReadmeGenie** functions correctly and meets quality standards. We use `unittest` for testing and `coverage` to monitor code coverage.
+
+### Testing Commands
+
+To run all tests and check coverage, use the following commands:
+
+```bash
+# Run all tests and collect coverage data
+coverage run --source=. -m unittest discover -s tests
+
+# Generate a detailed coverage report
+coverage report -m
+```
+
+This will show you which lines of code were tested, making it easier to identify untested areas.
+
+A pre-commit hook is configured to enforce a minimum test coverage percentage of 75% on each commit. This ensures that all code changes meet the required coverage threshold before they are committed.
 
 ## Environment Variables
 

@@ -2,9 +2,9 @@
 import os
 import sys
 
-import logging_config
-from models.cohere_api import cohereAPI
-from models.groq_api import groqAPI
+from src import logging_config
+from src.models.cohere_api import cohereAPI
+from src.models.groq_api import groqAPI
 
 FOOTER_STRING = "\n\nThis readme file was auto-generated using Readme Genie"
 

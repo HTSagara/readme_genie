@@ -4,10 +4,10 @@ import os
 import cohere
 from dotenv import load_dotenv
 
-import logging_config
+from src.logging_config import setup_logger
 
 # Set up the logger from logging_config
-logger = logging_config.setup_logger()
+logger = setup_logger()
 
 
 def cohereAPI(api_key, file_content):

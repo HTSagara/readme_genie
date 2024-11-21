@@ -3,11 +3,12 @@ import os
 import sys
 import unittest
 
+from src.readme_genie import parse_arguments
+
 # This is necessary because the test is in a subdirectory (tests), and Python wouldn’t find readme_genie.py by default.
 sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 )
-from readme_genie import parse_arguments
 
 
 class TestArgumentParsing(unittest.TestCase):

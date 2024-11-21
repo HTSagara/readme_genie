@@ -4,12 +4,7 @@ import time
 import unittest
 from unittest.mock import MagicMock, mock_open, patch
 
-# Add the project root to sys.path to ensure models import correctly
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-)
-
-from models.model import (
+from src.models.model import (
     check_title,
     create_env,
     get_env,
@@ -18,6 +13,11 @@ from models.model import (
     read_file_content,
     report_token_usage,
     selectModel,
+)
+
+# Add the project root to sys.path to ensure models import correctly
+sys.path.insert(
+    0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 )
 
 
@@ -46,9 +46,9 @@ class TestModelFunctions(unittest.TestCase):
         file_content = read_file_content(["file1.py", "file2.py"])
         self.assertEqual(file_content, "test content\n\ntest content\n\n")
 
-    @patch("models.model.selectModel", return_value="groq")
-    @patch("models.model.groqAPI")
-    @patch("models.model.cohereAPI")
+    @patch("src.models.model.selectModel", return_value="groq")
+    @patch("src.models.model.groqAPI")
+    @patch("src.models.model.cohereAPI")
     def test_handle_api_request(
         self, mock_cohereAPI, mock_groqAPI, mock_selectModel
     ):
@@ -79,7 +79,7 @@ class TestModelFunctions(unittest.TestCase):
         process_and_save_readme(response, "output.md", False)
         mock_file().write.assert_called_once_with("*Groq Generated Content*")
 
-    @patch("models.model.logger")
+    @patch("src.models.model.logger")
     def test_report_token_usage(self, mock_logger):
         mock_response = MagicMock()
         mock_response.usage.prompt_tokens = 50

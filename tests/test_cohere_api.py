@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from models.cohere_api import cohereAPI
+from src.models.cohere_api import cohereAPI
 
 
 class TestCohereAPI(unittest.TestCase):
-    @patch("models.cohere_api.cohere.Client")
+    @patch("src.models.cohere_api.cohere.Client")
     def test_cohere_api(self, MockCohereClient):
         mock_client = MockCohereClient.return_value
         mock_client.generate.return_value.generations = [

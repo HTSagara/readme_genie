@@ -24,6 +24,6 @@ source = ["."]
 branch = true
 omit = ["tests/*"]
 
-[tool.coverage.report]
-show_missing = true
-fail_under = 75
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

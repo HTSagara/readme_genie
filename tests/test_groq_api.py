@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from models.groq_api import groqAPI
+from src.models.groq_api import groqAPI
 
 
 class TestGroqAPI(unittest.TestCase):
-    @patch("models.groq_api.Groq")
+    @patch("src.models.groq_api.Groq")
     def test_groq_api(self, MockGroq):
         mock_client = MockGroq.return_value
         mock_client.chat.completions.create.return_value.choices = [

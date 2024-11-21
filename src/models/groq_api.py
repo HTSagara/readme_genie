@@ -1,13 +1,12 @@
-# models/groq_api.py
 import os
 
 from dotenv import load_dotenv
 from groq import Groq
 
-import logging_config
+from src.logging_config import setup_logger
 
-# Set up the logger from logging_config
-logger = logging_config.setup_logger()
+# Set up the logger
+logger = setup_logger()
 
 
 def groqAPI(api_key, base_url, file_content):

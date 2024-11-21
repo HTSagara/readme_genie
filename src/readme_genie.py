@@ -2,9 +2,9 @@
 import argparse
 import sys
 
-import logging_config
-from loadConfig import load_config
-from models.model import (
+from src import logging_config
+from src.loadConfig import load_config
+from src.models.model import (
     handle_api_request,
     process_and_save_readme,
     read_file_content,

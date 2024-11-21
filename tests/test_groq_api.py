@@ -12,8 +12,12 @@ class TestGroqAPI(unittest.TestCase):
             MagicMock(message=MagicMock(content="Generated README content"))
         ]
 
-        result = groqAPI("fake_api_key", "https://api.groq.com", "Sample file content")
-        self.assertEqual(result.choices[0].message.content, "Generated README content")
+        result = groqAPI(
+            "fake_api_key", "https://api.groq.com", "Sample file content"
+        )
+        self.assertEqual(
+            result.choices[0].message.content, "Generated README content"
+        )
 
 
 if __name__ == "__main__":

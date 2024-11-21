@@ -1,7 +1,7 @@
 # pyproject.toml
 # Set up black as formatter
 [tool.black]
-line-length = 88
+line-length = 79
 target-version = ["py311"]
 
 # Set up ruff as linter only

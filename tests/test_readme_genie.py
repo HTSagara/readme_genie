@@ -67,7 +67,12 @@ class TestReadmeGenie(unittest.TestCase):
     @patch("readme_genie.process_and_save_readme")
     @patch("readme_genie.sys.exit")
     def test_main_successful_run(
-        self, mock_exit, mock_process, mock_handle, mock_read_file, mock_load_config
+        self,
+        mock_exit,
+        mock_process,
+        mock_handle,
+        mock_read_file,
+        mock_load_config,
     ):
         """Test the main function's successful run path."""
         test_args = ["file1.py", "file2.py", "--output", "output.md"]
@@ -79,7 +84,9 @@ class TestReadmeGenie(unittest.TestCase):
         mock_handle.assert_called_once_with(
             "test_key", "http://example.com", "file content"
         )
-        mock_process.assert_called_once_with("response content", "output.md", False)
+        mock_process.assert_called_once_with(
+            "response content", "output.md", False
+        )
         mock_exit.assert_called_once_with(0)
 
 

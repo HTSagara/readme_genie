@@ -94,4 +94,6 @@ def report_token_usage(response):
             f"Token Usage Information: Prompt tokens: {usage.prompt_tokens}, Completion tokens: {usage.completion_tokens}, Total tokens: {usage.total_tokens}"
         )
     except AttributeError:
-        logger.warning("Token usage information not available for this response.")
+        logger.warning(
+            "Token usage information not available for this response."
+        )

@@ -1,11 +1,13 @@
 import os
 import sys
-import unittest
 import time
+import unittest
 from unittest.mock import MagicMock, mock_open, patch
 
 # Add the project root to sys.path to ensure models import correctly
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(
+    0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+)
 
 from models.model import (
     check_title,
@@ -31,7 +33,9 @@ class TestModelFunctions(unittest.TestCase):
         create_env("test_api_key", "https://api.test.com", "cohere")
         mock_file.assert_called_once_with(".env", "a")
         mock_file().write.assert_any_call("COHERE_API_KEY=test_api_key\n")
-        mock_file().write.assert_any_call("COHERE_BASE_URL=https://api.test.com\n")
+        mock_file().write.assert_any_call(
+            "COHERE_BASE_URL=https://api.test.com\n"
+        )
 
     def test_select_model(self):
         self.assertEqual(selectModel("https://api.cohere.ai/v1"), "cohere")
@@ -45,14 +49,20 @@ class TestModelFunctions(unittest.TestCase):
     @patch("models.model.selectModel", return_value="groq")
     @patch("models.model.groqAPI")
     @patch("models.model.cohereAPI")
-    def test_handle_api_request(self, mock_cohereAPI, mock_groqAPI, mock_selectModel):
-        handle_api_request("test_api_key", "https://api.groq.com", "file content")
+    def test_handle_api_request(
+        self, mock_cohereAPI, mock_groqAPI, mock_selectModel
+    ):
+        handle_api_request(
+            "test_api_key", "https://api.groq.com", "file content"
+        )
         mock_groqAPI.assert_called_once_with(
             "test_api_key", "https://api.groq.com", "file content"
         )
 
         mock_selectModel.return_value = "cohere"
-        handle_api_request("test_api_key", "https://api.cohere.ai/v1", "file content")
+        handle_api_request(
+            "test_api_key", "https://api.cohere.ai/v1", "file content"
+        )
         mock_cohereAPI.assert_called_once_with("test_api_key", "file content")
 
     def test_check_title(self):
@@ -87,6 +97,7 @@ class TestModelFunctions(unittest.TestCase):
         mock_logger.warning.assert_any_call(
             "Token usage information not available for this response."
         )
+
     @patch("builtins.open", new_callable=mock_open, read_data="")
     def test_read_file_content_empty_file(self, mock_file):
         """Test read_file_content with an empty file."""
@@ -95,31 +106,41 @@ class TestModelFunctions(unittest.TestCase):
         # Assert that the function includes newlines for empty content
         self.assertEqual(file_content, "\n\n")
 
-
-    @patch("builtins.open", new_callable=mock_open, read_data="# This is a comment\n# Another comment line\n")
+    @patch(
+        "builtins.open",
+        new_callable=mock_open,
+        read_data="# This is a comment\n# Another comment line\n",
+    )
     def test_read_file_content_only_comments(self, mock_file):
         """Test read_file_content with a file containing only comments."""
         # Mock the behavior for a file with only comments
         file_content = read_file_content(["comments_only.py"])
         # Assert that the comments are returned as part of the content
-        self.assertEqual(file_content, "# This is a comment\n# Another comment line\n\n\n")
+        self.assertEqual(
+            file_content, "# This is a comment\n# Another comment line\n\n\n"
+        )
 
-    @patch("builtins.open", new_callable=mock_open, read_data="line\n" * 10**6)  # Simulate 1 million lines
+    @patch(
+        "builtins.open", new_callable=mock_open, read_data="line\n" * 10**6
+    )  # Simulate 1 million lines
     def test_read_file_content_large_file(self, mock_file):
         """Test read_file_content with a large file."""
         start_time = time.time()
-        
+
         file_content = read_file_content(["large_file.py"])
-        
+
         end_time = time.time()
         elapsed_time = end_time - start_time
-        
+
         # Assert the content length matches the simulated file size
         expected_content = ("line\n" * 10**6) + "\n\n"
         self.assertEqual(file_content, expected_content)
-        
+
         # Check performance (should complete within 2 seconds)
-        self.assertLess(elapsed_time, 2, "Processing large files took too long!")
+        self.assertLess(
+            elapsed_time, 2, "Processing large files took too long!"
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

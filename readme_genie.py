@@ -4,7 +4,11 @@ import sys
 
 import logging_config
 from loadConfig import load_config
-from models.model import handle_api_request, process_and_save_readme, read_file_content
+from models.model import (
+    handle_api_request,
+    process_and_save_readme,
+    read_file_content,
+)
 
 # Set up the logger
 logger = logging_config.setup_logger()
@@ -30,10 +34,17 @@ def parse_arguments(config):
         usage="%(prog)s [options] <file1> <file2> ...",
     )
     parser.add_argument(
-        "files", nargs="+", type=str, help="Input file(s) to generate the README."
+        "files",
+        nargs="+",
+        type=str,
+        help="Input file(s) to generate the README.",
     )
     parser.add_argument(
-        "-a", "--api-key", type=str, help="Your API key.", default=config.get("api_key")
+        "-a",
+        "--api-key",
+        type=str,
+        help="Your API key.",
+        default=config.get("api_key"),
     )
     parser.add_argument(
         "-u",
@@ -70,7 +81,9 @@ def main():
         args = parse_arguments(config)
 
         file_content = read_file_content(args.files)
-        response = handle_api_request(args.api_key, args.base_url, file_content)
+        response = handle_api_request(
+            args.api_key, args.base_url, file_content
+        )
         output_filename = args.output or "README.md"
 
         # Include the token_usage argument in the function call

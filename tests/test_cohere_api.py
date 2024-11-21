@@ -13,7 +13,9 @@ class TestCohereAPI(unittest.TestCase):
         ]
 
         result = cohereAPI("fake_api_key", "Sample file content")
-        self.assertEqual(result.generations[0].text, "Generated README content")
+        self.assertEqual(
+            result.generations[0].text, "Generated README content"
+        )
 
 
 if __name__ == "__main__":

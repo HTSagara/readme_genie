@@ -13,7 +13,9 @@ logger = logging_config.setup_logger()
 def groqAPI(api_key, base_url, file_content):
     load_dotenv()
 
-    client = Groq(api_key=api_key or os.getenv("GROQ_API_KEY"), base_url=base_url)
+    client = Groq(
+        api_key=api_key or os.getenv("GROQ_API_KEY"), base_url=base_url
+    )
 
     # Make a request to Groq with the model parameter
     response = client.chat.completions.create(

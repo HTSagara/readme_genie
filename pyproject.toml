@@ -1,13 +1,11 @@
 # pyproject.toml
 
-
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "ReadmeGenie"  # Name of your project on PyPI
-version = "1.0.0"     # Initial version
 description = "A tool to generate README files effortlessly"
 readme = "README.md"  # Optional: Path to README file
 license = { file = "LICENSE" }
@@ -26,6 +24,10 @@ dependencies = [
     "pre-commit",
     "coverage"
 ]
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+write_to = "src/_version.py"  # Optional: Write version to a file
 
 [project.urls]
 Homepage = "https://github.com/HTSagara/readme_genie"

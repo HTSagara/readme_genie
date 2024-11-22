@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch full history to allow setuptools_scm to retrieve version
+
       - name: Check out code
         uses: actions/checkout@v3
 

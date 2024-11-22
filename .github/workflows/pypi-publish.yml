@@ -26,8 +26,8 @@ jobs:
       - name: Build the package
         run: python -m build
 
-      - name: Publish to PyPI
+      - name: Publish to Test PyPI
         env:
-          TWINE_USERNAME: __token__ # PyPI username for token authentication
+          TWINE_USERNAME: "__token__"
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+        run: python -m twine upload --repository-url https://test.pypi.org/legacy/ --verbose dist/*

@@ -30,4 +30,4 @@ jobs:
         env:
           TWINE_USERNAME: __token__ # PyPI username for token authentication
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: python -m twine upload dist/*
+        run: python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*

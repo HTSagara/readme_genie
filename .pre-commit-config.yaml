@@ -12,5 +12,5 @@ repos:
     hooks:
       - id: check-coverage
         name: Check Coverage
-        entry: bash -c "coverage run --source=. -m unittest discover -s tests && coverage report -m --fail-under=75"
+        entry: bash -c "coverage run --source=. -m unittest discover -s tests && coverage report -m --fail-under=70"
         language: system

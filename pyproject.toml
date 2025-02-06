@@ -12,11 +12,11 @@ authors = [
     { name = "Henrique Sagara", email = "henrique.sagara@hotmail.com" }
 ]
 dependencies = [
-    "cohere==1.2.6",
+    "cohere",
     "colorama==0.4.6",
-    "groq==0.11.0",
+    "groq",
     "python-dotenv==1.0.1",
-    "toml==0.10.2",
+    "toml",
     "black==23.3.0",
     "ruff==0.0.261",
     "pre-commit",

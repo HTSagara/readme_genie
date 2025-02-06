@@ -11,6 +11,22 @@ setup(
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     python_requires=">=3.7",
+    install_requires=[
+        "cohere>=1.2.6,<2.0.0",
+        "colorama>=0.4.6,<0.5.0",
+        "groq>=0.11.0,<0.12.0",
+        "python-dotenv>=1.0.0,<2.0.0",
+        "toml>=0.10.0,<0.11.0",
+        "black>=24.1.0,<25.0.0",
+        "ruff>=0.2.0,<0.3.0",
+        "pre-commit>=3.5.0,<4.0.0",
+        "coverage>=7.4.0,<8.0.0",
+    ],
+    entry_points={
+        "console_scripts": [
+            "readmegenie=readmegenie.cli:main",
+        ],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

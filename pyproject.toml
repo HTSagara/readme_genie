@@ -1,6 +1,6 @@
 # pyproject.toml
 [build-system]
-requires = ["setuptools", "wheel", "setuptools_scm"]
+requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -11,21 +11,8 @@ license = { file = "LICENSE" }
 authors = [
     { name = "Henrique Sagara", email = "henrique.sagara@hotmail.com" }
 ]
-dependencies = [
-    "cohere",
-    "colorama",
-    "groq",
-    "python-dotenv",
-    "toml",
-    "black",
-    "ruff",
-    "pre-commit",
-    "coverage"
-]
-dynamic = ["version"]  # Keep only 'version' dynamic
-
+dynamic = ["version", "dependencies"]
 requires-python = ">=3.7"
-
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -34,37 +21,29 @@ classifiers = [
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
-write_to = "src/_version.py"  # Optional: Write version to a file
+write_to = "src/_version.py"
 
 [project.urls]
 Homepage = "https://github.com/HTSagara/readme_genie"
 Documentation = "https://github.com/HTSagara/readme_genie/blob/main/README.md"
 
-# Set up black as formatter
 [tool.black]
 line-length = 79
 target-version = ["py311"]
 
-# Set up ruff as linter only
 [tool.ruff]
-# Exclude directories that don’t need linting (e.g., virtual environments)
 exclude = [
     "venv/",
     "__pycache__/"
 ]
 fix = true
-
-
-# Enable specific linting rules
-select = ["F", "E", "W", "B", "I", "S"]  # Example codes: F=flake8, E=errors, W=warnings, B=bugbear, I=import, S=safety
-# Exclude Black-compatible rules to avoid conflicts with Black's formatting.
-ignore = ["E501", "E203", "E231"]  # Exclude Black-incompatible style issues
+select = ["F", "E", "W", "B", "I", "S"]
+ignore = ["E501", "E203", "E231"]
 
 [tool.coverage.run]
 source = ["."]
 branch = true
 omit = ["tests/*"]
-
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

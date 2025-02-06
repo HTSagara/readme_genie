@@ -47,7 +47,7 @@ exclude = [
 ]
 fix = true
 select = ["F", "E", "W", "B", "I", "S"]
-ignore = ["E501", "E203", "E231"]
+ignore = ["E501", "E203", "E231", "E402"]
 
 [tool.coverage.run]
 source = ["."]

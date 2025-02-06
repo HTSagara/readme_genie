@@ -13,12 +13,12 @@ authors = [
 ]
 dependencies = [
     "cohere",
-    "colorama==0.4.6",
+    "colorama",
     "groq",
-    "python-dotenv==1.0.1",
+    "python-dotenv",
     "toml",
-    "black==23.3.0",
-    "ruff==0.0.261",
+    "black",
+    "ruff",
     "pre-commit",
     "coverage"
 ]

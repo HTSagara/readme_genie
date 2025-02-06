@@ -31,15 +31,6 @@ Documentation = "https://github.com/HTSagara/readme_genie/blob/main/README.md"
 line-length = 79
 target-version = ["py311"]
 
-[tool.ruff]
-exclude = [
-    "venv/",
-    "__pycache__/"
-]
-fix = true
-select = ["F", "E", "W", "B", "I", "S"]
-ignore = ["E501", "E203", "E231"]
-
 [tool.coverage.run]
 source = ["."]
 branch = true

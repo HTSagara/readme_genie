@@ -1,4 +1,7 @@
 # pyproject.toml
+[build-system]
+requires = ["setuptools", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "ReadmeGenie"  # Name of your project on PyPI
@@ -20,7 +23,13 @@ dependencies = [
     "pre-commit",
     "coverage"
 ]
-dynamic = ["version"]  # Declare that the version is managed dynamically by setuptools_scm
+dynamic = ["version"]  # Keep version and classifiers dynamic
+requires-python = ">=3.7"  # Declare this statically (remove it from dynamic)
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
 
 
 [tool.setuptools_scm]

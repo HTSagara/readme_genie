@@ -18,14 +18,6 @@ The file is saved under the specified output filename (e.g., `README.md`).
 - You can customize the generated README by modifying the input files' content.
 - Use the `setuptools` package in your `requirements.txt` to avoid environment-related issues.
 
-## Using the `generate-readme.sh` Script
-
-The `generate-readme.sh` script is a convenience wrapper for running the Docker container. Use it as follows:
-
-```bash
-./generate-readme.sh -a your_api_key -u https://api.groq.com -o README.md path/to/file1.py path/to/file2.py
-```
-
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.

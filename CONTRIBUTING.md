@@ -8,12 +8,12 @@ Thank you for taking the time to contribute to **ReadmeGenie**! Your help is gre
 
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-- [Running with Docker](#running-with-docker)
-  - [Build the Docker Image](#build-the-docker-image)
-  - [Install Required Packages](#install-required-packages)
-  - [Run the Script](#run-the-script)
 - [Running Locally Without Docker](#running-locally-without-docker)
   - [Set Up a Virtual Environment](#set-up-a-virtual-environment)
+  - [Install Required Packages](#install-required-packages)
+  - [Run the Script](#run-the-script)
+- [Running with Docker](#running-with-docker)
+  - [Build the Docker Image](#build-the-docker-image)
   - [Install Required Packages](#install-required-packages)
   - [Run the Script](#run-the-script)
 - [Code Formatting and Linting](#code-formatting-and-linting)
@@ -31,6 +31,47 @@ Thank you for taking the time to contribute to **ReadmeGenie**! Your help is gre
 - **Docker**: [Install Docker](https://docs.docker.com/get-docker/) if you plan to use Docker.
 - **Python 3.12**: [Install Python](https://www.python.org/downloads/) if you plan to run the script locally without Docker.
 - **API Keys**: You will need an API key for Groq or Cohere.
+
+## Running Locally Without Docker
+
+Clone the project into you local machine
+
+### Set Up a Virtual Environment
+
+Create a Python virtual environment to isolate your project’s dependencies:
+
+```bash
+python3 -m venv venv
+```
+
+### Install Required Packages
+
+With the virtual environment activated, install the required packages:
+
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Run the Script
+
+Run the script with the required arguments:
+
+```bash
+python src/readme_genie.py <path/to/file1.py> <path/to/file2.py> -a <your_api_key> -u <https://api.groq.com> -o <file_name>.md -t
+```
+
+Example running with GROQ:
+
+```bash
+python src/readme_genie.py src/examples/javascript/routes.js -a <GROQ_API_KEY> -u https://api.groq.com
+```
+
+Example running with Cohere:
+
+```bash
+python src/readme_genie.py src/examples/javascript/routes.js -a <COHERE_API_KEY> -u https://api.cohere.ai/v1
+```
 
 ## Running with Docker
 
@@ -62,33 +103,6 @@ You can also use the provided `generate-readme.sh` script:
 
 ```bash
 ./generate-readme.sh [OPTIONS] <file1> <file2> ...
-```
-
-## Running Locally Without Docker
-
-### Set Up a Virtual Environment
-
-Create a Python virtual environment to isolate your project’s dependencies:
-
-```bash
-python3 -m venv venv
-```
-
-### Install Required Packages
-
-With the virtual environment activated, install the required packages:
-
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-### Run the Script
-
-Run the script with the required arguments:
-
-```bash
-python readme_genie.py path/to/file1.py path/to/file2.py -a your_api_key -u https://api.groq.com -o README.md -t
 ```
 
 ## Code Formatting and Linting

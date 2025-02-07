@@ -14,10 +14,10 @@ authors = [
 requires-python = ">=3.7"
 dependencies = [
     "cohere",
-    "colorama",
+    "colorama>=0.4.6",
     "groq",
-    "python-dotenv",
-    "toml",
+    "python-dotenv>=1.0.0",
+    "toml>=0.10.0",
 ]
 
 [tool.setuptools_scm]

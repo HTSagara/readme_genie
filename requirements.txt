@@ -1,6 +1,6 @@
-cohere==5.11.0
+cohere
 colorama==0.4.6
-groq==0.11.0
+groq
 python-dotenv==1.0.1
 toml==0.10.2
 setuptools

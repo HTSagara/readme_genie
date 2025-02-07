@@ -8,14 +8,9 @@ Thank you for taking the time to contribute to **ReadmeGenie**! Your help is gre
 
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-- [Running Locally Without Docker](#running-locally-without-docker)
+- [Running Locally](#running-locally-without-docker)
   - [Set Up a Virtual Environment](#set-up-a-virtual-environment)
   - [Install Required Packages](#install-required-packages)
-  - [Run the Script](#run-the-script)
-- [Running with Docker](#running-with-docker)
-  - [Build the Docker Image](#build-the-docker-image)
-  - [Install Required Packages](#install-required-packages)
-  - [Run the Script](#run-the-script)
 - [Code Formatting and Linting](#code-formatting-and-linting)
   - [Using Ruff for Linting](#using-ruff-for-linting)
   - [Using Black for Code Formatting](#using-black-for-code-formatting)
@@ -71,38 +66,6 @@ Example running with Cohere:
 
 ```bash
 python src/readme_genie.py src/examples/javascript/routes.js -a <COHERE_API_KEY> -u https://api.cohere.ai/v1
-```
-
-## Running with Docker
-
-### Build the Docker Image
-
-In the project’s root directory, where the `Dockerfile` is located, build the Docker image:
-
-```bash
-docker build -t readmegenie:latest .
-```
-
-### Install Required Packages
-
-Ensure that all required Python packages are installed inside the Docker container by executing:
-
-```bash
-docker run --rm -v "$(pwd)":/app readmegenie:latest pip install -r requirements.txt
-```
-
-### Run the Script
-
-To generate a README file, use the following command:
-
-```bash
-docker run --rm -v "$(pwd)":/app readmegenie:latest python3 readme_genie.py [OPTIONS] <file1> <file2> ...
-```
-
-You can also use the provided `generate-readme.sh` script:
-
-```bash
-./generate-readme.sh [OPTIONS] <file1> <file2> ...
 ```
 
 ## Code Formatting and Linting
